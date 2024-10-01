@@ -8,7 +8,7 @@
 
         <asp:Label ID="Label1" runat="server" Text="Ingrese el codigo de su voucher "></asp:Label>
         <asp:TextBox ID="txtCodigo" runat="server"></asp:TextBox>
-        <asp:Button ID="btnCodigo" runat="server" Text="Siguiente" />
+        <asp:Button ID="btnCodigo" runat="server" Text="Siguiente" Onclick="btnCodigo_Click"/>
     
     
     </main>
