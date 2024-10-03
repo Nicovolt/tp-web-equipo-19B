@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Dominio;
 
 namespace tp_web_equipo_19B
 {
@@ -19,50 +20,26 @@ namespace tp_web_equipo_19B
         {
             string codigoVoucher = txtCodigo.Text.Trim();
 
-            if (!string.IsNullOrEmpty(codigoVoucher))
+            if (string.IsNullOrEmpty(codigoVoucher))
             {
-                AccesoDatos datos = new AccesoDatos();
-                string consulta = "SELECT IdCliente FROM Vouchers WHERE CodigoVoucher = @codigo";
-                datos.setearConsulta(consulta);
-                datos.setearParametro("@codigo", codigoVoucher);
+                throw new Exception("El codigo esta vacio");
+            }
 
-                try
-                {
-                    datos.ejecutarLectura();
-                    if (datos.Lector.Read())
-                    {
-                       
-                        if (datos.Lector["IdCliente"] != DBNull.Value)
-                        {
-                       
-                            Response.Write("Este voucher ya ha sido utilizado");
-                        }
-                        else
-                        {
-                           
-                            Session["codigoVoucher"] = codigoVoucher;
-                            Response.Redirect("Premio.aspx");
-                        }
-                    }
-                    else
-                    {
-                     
-                        Response.Write("El codigo no es valido, ya esta en uso");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    
-                }
-                finally
-                {
-                    datos.cerrarConexion();
-                }
-            }
-            else
+            VoucherNegocio voucherNegocio = new VoucherNegocio();
+
+            Voucher voucher = voucherNegocio.buscaPorCodigo(codigoVoucher);
+
+            if (voucher == null || voucher.CodigoVoucher.Equals(""))
             {
-                Response.Write("Por favor, ingrese un codigo");
+                throw new Exception("El codigo ingresado no existe");
             }
+
+            if (voucher.IdCliente != null)
+            {
+                throw new Exception("El codigo ingresado ya se encuentra asociado a un cliente");
+            }
+
+            /* TODO: actualizacion de la pagina a los productos */
         }
 
     }
