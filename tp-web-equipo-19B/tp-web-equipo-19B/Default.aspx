@@ -6,9 +6,10 @@
 
         <h1>Ganaste</h1>
 
-        <asp:Label ID="Label1" runat="server" Text="Ingrese el codigo de su voucher "></asp:Label>
+        <asp:Label ID="lblVoucher" runat="server" Text="Ingrese el codigo de su voucher "></asp:Label>
         <asp:TextBox ID="txtCodigo" runat="server"></asp:TextBox>
         <asp:Button ID="btnCodigo" runat="server" Text="Siguiente" Onclick="btnCodigo_Click"/>
+        <asp:Label Text="" ID="lblErrorVoucher" runat="server" />
     
     
     </main>

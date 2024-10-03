@@ -18,11 +18,15 @@ namespace tp_web_equipo_19B
 
         protected void btnCodigo_Click(object sender, EventArgs e)
         {
+            lblErrorVoucher.Text = "";
             string codigoVoucher = txtCodigo.Text.Trim();
+
 
             if (string.IsNullOrEmpty(codigoVoucher))
             {
-                throw new Exception("El codigo esta vacio");
+                lblErrorVoucher.Text = "El codigo esta vacio";
+                lblErrorVoucher.ForeColor = System.Drawing.Color.Red;
+                return;
             }
 
             VoucherNegocio voucherNegocio = new VoucherNegocio();
@@ -31,12 +35,16 @@ namespace tp_web_equipo_19B
 
             if (voucher == null || voucher.CodigoVoucher.Equals(""))
             {
-                throw new Exception("El codigo ingresado no existe");
+                lblErrorVoucher.Text = "El codigo ingresado no existe";
+                lblErrorVoucher.ForeColor = System.Drawing.Color.Red;
+                return;
             }
 
             if (voucher.IdCliente != null)
             {
-                throw new Exception("El codigo ingresado ya se encuentra asociado a un cliente");
+                lblErrorVoucher.Text = "El código ingresado ya se encuentra asociado a un cliente";
+                lblErrorVoucher.ForeColor = System.Drawing.Color.Red;
+                return;
             }
 
             /* TODO: actualizacion de la pagina a los productos */
