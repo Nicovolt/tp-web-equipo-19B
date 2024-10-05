@@ -47,7 +47,7 @@ namespace tp_web_equipo_19B
                     return;
                 }
 
-                else
+                if (voucher.IdCliente == null)
                 {
                     Response.Redirect("premio.aspx");
                 }
