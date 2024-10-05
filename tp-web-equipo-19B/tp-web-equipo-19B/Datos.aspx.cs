@@ -11,6 +11,10 @@ namespace tp_web_equipo_19B
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["AccesoConcedidoDatos"] == null || !(bool)Session["AccesoConcedidoDatos"])
+            {
+                Response.Write("<script>alert('Debe ingresar un código válido o elegir un premio para acceder.');window.location='default.aspx';</script>");
+            }
 
         }
     }
