@@ -8,7 +8,7 @@
 
             <!-- Label del código de voucher con estilo degradado -->
             <div class="text-center mb-2">
-                <asp:Label ID="lblVoucher" runat="server" Text="Ingrese el código de su voucher" CssClass="form-label gradient-label"></asp:Label>
+                <asp:Label ID="lblVoucher" runat="server" Text="Ingrese el código de su voucher" CssClass="form-label gradient-label "></asp:Label>
             </div>
 
             <!-- Contenedor flexible para alinear el TextBox y el Botón -->

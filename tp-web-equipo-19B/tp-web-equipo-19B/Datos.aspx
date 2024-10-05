@@ -1,94 +1,105 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Datos.aspx.cs" Inherits="tp_web_equipo_19B.Datos" %>
+﻿<%@ Page Title="Formulario de Datos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Formulario_web1.aspx.cs" Inherits="tp_web_equipo_19B.Formulario_web11" %>
 
-<!DOCTYPE html>
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-    
-  
+    <main class="d-flex align-items-center justify-content-center min-vh-100" style="margin-top: -100px;">
+        <div class="card p-4 custom-card" style="max-width: 400px; width: 100%;">
+            <h1 class="text-center mb-4 gradient-text">INGRESA TUS DATOS</h1>
+
+            <!-- DNI -->
+            <div class="mb-3 text-center">
+                <asp:Label ID="lblDNI" runat="server" Text="DNI" CssClass="form-label gradient-label ms-10"></asp:Label>
+                <asp:TextBox ID="txtDNI" CssClass="form-control custom-input" runat="server" />
+            </div>
+
+            <!-- Nombre -->
+            <div class="mb-3 text-center">
+                <asp:Label ID="lblNombre" runat="server" Text="Nombre" CssClass="form-label gradient-label"></asp:Label>
+                <asp:TextBox ID="txtNombre" CssClass="form-control custom-input" runat="server" />
+            </div>
+
+            <!-- Apellido -->
+            <div class="mb-3 text-center">
+                <asp:Label ID="lblApellido" runat="server" Text="Apellido" CssClass="form-label gradient-label"></asp:Label>
+                <asp:TextBox ID="txtApellido" CssClass="form-control custom-input" runat="server" />
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3 text-center">
+                <asp:Label ID="lblEmail" runat="server" Text="Email" CssClass="form-label gradient-label"></asp:Label>
+                <asp:TextBox ID="txtEmail" CssClass="form-control custom-input" runat="server" />
+            </div>
+
+            <!-- Dirección -->
+            <div class="mb-3 text-center">
+                <asp:Label ID="lblDireccion" runat="server" Text="Dirección" CssClass="form-label gradient-label"></asp:Label>
+                <asp:TextBox ID="txtDireccion" CssClass="form-control custom-input" runat="server" />
+            </div>
+
+            <!-- Ciudad -->
+            <div class="mb-3 text-center">
+                <asp:Label ID="lblCiudad" runat="server" Text="Ciudad" CssClass="form-label gradient-label"></asp:Label>
+                <asp:TextBox ID="txtCiudad" CssClass="form-control custom-input" runat="server" />
+            </div>
+
+            <!-- CP -->
+            <div class="mb-3 text-center">
+                <asp:Label ID="lblCp" runat="server" Text="CP" CssClass="form-label gradient-label"></asp:Label>
+                <asp:TextBox ID="txtCp" CssClass="form-control custom-input" runat="server" />
+            </div>
+
+            <!-- Botón de Envío -->
+            <asp:Button ID="Button1" runat="server" Text="Enviar" CssClass="btn btn-primary w-100 gradient-button custom-button" />
+        </div>
+    </main>
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        form {
+        .custom-card {
+            box-shadow: 0 4px 20px rgba(128, 0, 128, 0.2), 0 0 25px rgba(138, 43, 226, 0.3);
+            border-radius: 15px;
             background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            max-width: 500px;
-            width: 100%;
         }
 
-        h1 {
-            text-align: center;
-            color: #333;
+        .gradient-text {
+            font-weight: bold;
+            font-size: 2rem;
+            background: linear-gradient(90deg, rgba(138, 43, 226, 1), rgba(255, 105, 180, 1)); /* Degradado de violeta a rosa */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
         }
 
-        h2 {
-            font-size: 16px;
-            color: #666;
+        .gradient-label {
+            font-weight: bold;
+            background: linear-gradient(90deg, rgba(138, 43, 226, 1), rgba(255, 105, 180, 1)); /* Degradado de violeta a rosa */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        div {
-            margin-bottom: 15px;
+        .gradient-button {
+            background: linear-gradient(90deg, rgba(138, 43, 226, 1), rgba(255, 105, 180, 1)); /* Degradado de violeta a rosa */
+            color: white; /* Texto en blanco */
+            border: none;
+            transition: background 0.3s;
         }
 
-        input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        .gradient-button:hover {
+            background: linear-gradient(90deg, rgba(255, 105, 180, 1), rgba(138, 43, 226, 1)); /* Degradado invertido en hover */
         }
 
-        
-
-        button:hover {
-            background-color: #218838;
+        main {
+            margin-top: -200px;
         }
+
+        .custom-input {
+            width: 80%; 
+            margin: 0 auto; 
+        }
+        .custom-button {
+            width: 80%; 
+            margin: 0 auto; 
+            margin-top: 5%
+}
     </style>
-</head>
-<body>
-    <h1>Ingresa tus datos</h1>
-    <form id="contact" runat="server">
-        <div id="dni"> 
-            <h2>DNI</h2> 
-            <asp:TextBox ID="txtDNI" runat="server"></asp:TextBox>
-        </div>
 
-        <div id="nombre">
-            <h2>Nombre</h2>
-            <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
-            
-            <h2>Apellido</h2>
-            <asp:TextBox ID="txtApellido" runat="server"></asp:TextBox>
-            
-            <h2>Email</h2>
-            <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
-        </div>
-
-        <div id="direccion">   
-            <h2>Direccion</h2>
-            <asp:TextBox ID="txtDireccion" runat="server"></asp:TextBox>
-            
-            <h2>Ciudad</h2>
-            <asp:TextBox ID="txtCiudad" runat="server"></asp:TextBox>
-            
-            <h2>CP</h2>
-            <asp:TextBox ID="txtCp" runat="server"></asp:TextBox>
-        </div>
-
-        <asp:Button ID="Button1" runat="server" Text="Enviar" CssClass="btn btn-primary" />
-    </form>
-</body>
-</html>
+</asp:Content>

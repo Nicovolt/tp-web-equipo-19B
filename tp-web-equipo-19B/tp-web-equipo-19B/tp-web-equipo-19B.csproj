@@ -116,9 +116,9 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Datos.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
+    <Content Include="Datos.aspx" />
     <Content Include="Premio.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -185,19 +185,19 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Datos.aspx.cs">
-      <DependentUpon>Datos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Datos.aspx.designer.cs">
-      <DependentUpon>Datos.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Datos.aspx.cs">
+      <DependentUpon>Datos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Datos.aspx.designer.cs">
+      <DependentUpon>Datos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Premio.aspx.cs">
       <DependentUpon>Premio.aspx</DependentUpon>

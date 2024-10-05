@@ -27,6 +27,7 @@ namespace tp_web_equipo_19B
         protected void btnSeleccionPremio_Click(object sender, EventArgs e)
         {
             string valor = ((Button)sender).CommandArgument;
+            Response.Redirect("Datos.aspx");
         }
     }
 }
