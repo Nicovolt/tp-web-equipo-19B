@@ -1,7 +1,5 @@
 ﻿using Negocio;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -13,42 +11,58 @@ namespace tp_web_equipo_19B
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            // Puedes incluir código adicional en Page_Load si es necesario
         }
 
         protected void btnCodigo_Click(object sender, EventArgs e)
         {
-            lblErrorVoucher.Text = "";
+            lblErrorVoucher.Text = ""; // Limpiar mensajes de error previos
             string codigoVoucher = txtCodigo.Text.Trim();
 
-
-            if (string.IsNullOrEmpty(codigoVoucher))
+            try
             {
-                lblErrorVoucher.Text = "El codigo esta vacio";
-                lblErrorVoucher.ForeColor = System.Drawing.Color.Red;
-                return;
+                if (string.IsNullOrEmpty(codigoVoucher))
+                {
+                    lblErrorVoucher.Text = "El código está vacío.";
+                    lblErrorVoucher.ForeColor = System.Drawing.Color.Red;
+                    return;
+                }
+
+                VoucherNegocio voucherNegocio = new VoucherNegocio();
+
+                // Intentamos buscar el voucher por su código
+                Voucher voucher = voucherNegocio.buscaPorCodigo(codigoVoucher);
+
+                if (voucher == null || string.IsNullOrEmpty(voucher.CodigoVoucher))
+                {
+                    lblErrorVoucher.Text = "El código ingresado no existe.";
+                    lblErrorVoucher.ForeColor = System.Drawing.Color.Red;
+                    return;
+                }
+
+                else if (voucher.IdCliente != null)
+                {
+                    lblErrorVoucher.Text = "El código ingresado ya se encuentra asociado a un cliente.";
+                    lblErrorVoucher.ForeColor = System.Drawing.Color.Red;
+                    return;
+                }
+
+                else
+                {
+                    Response.Redirect("premio.aspx");
+                }
+
+                // Aquí puedes agregar lógica adicional para continuar el flujo si el voucher es válido
+
             }
-
-            VoucherNegocio voucherNegocio = new VoucherNegocio();
-
-            Voucher voucher = voucherNegocio.buscaPorCodigo(codigoVoucher);
-
-            if (voucher == null || voucher.CodigoVoucher.Equals(""))
+            catch (Exception ex)
             {
-                lblErrorVoucher.Text = "El codigo ingresado no existe";
+                // Manejar excepciones generales
+                lblErrorVoucher.Text = "Se ha producido un error inesperado. Por favor, inténtelo más tarde.";
                 lblErrorVoucher.ForeColor = System.Drawing.Color.Red;
-                return;
+                // Puedes registrar el error (ejemplo en un log de errores)
+                
             }
-
-            if (voucher.IdCliente != null)
-            {
-                lblErrorVoucher.Text = "El código ingresado ya se encuentra asociado a un cliente";
-                lblErrorVoucher.ForeColor = System.Drawing.Color.Red;
-                return;
-            }
-
-            /* TODO: actualizacion de la pagina a los productos */
         }
-
     }
 }
