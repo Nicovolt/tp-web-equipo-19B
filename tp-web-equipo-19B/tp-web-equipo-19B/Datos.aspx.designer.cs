@@ -141,12 +141,12 @@ namespace tp_web_equipo_19B
         protected global::System.Web.UI.WebControls.TextBox txtCp;
 
         /// <summary>
-        /// Control Button1.
+        /// Control btnDatos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnDatos;
     }
 }
