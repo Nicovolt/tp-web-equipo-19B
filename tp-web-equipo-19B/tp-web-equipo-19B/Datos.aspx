@@ -10,46 +10,61 @@
             <div class="mb-3 text-center">
                 <asp:Label ID="lblDNI" runat="server" Text="DNI" CssClass="form-label gradient-label ms-10"></asp:Label>
                 <asp:TextBox ID="txtDNI" CssClass="form-control custom-input" runat="server" />
+                <asp:Label Text="" ID="lblErrorDni" runat="server" />
             </div>
 
             <!-- Nombre -->
             <div class="mb-3 text-center">
                 <asp:Label ID="lblNombre" runat="server" Text="Nombre" CssClass="form-label gradient-label"></asp:Label>
                 <asp:TextBox ID="txtNombre" CssClass="form-control custom-input" runat="server" />
+                <asp:Label Text="" ID="lblErrorNombre" runat="server" />
             </div>
 
             <!-- Apellido -->
             <div class="mb-3 text-center">
                 <asp:Label ID="lblApellido" runat="server" Text="Apellido" CssClass="form-label gradient-label"></asp:Label>
                 <asp:TextBox ID="txtApellido" CssClass="form-control custom-input" runat="server" />
+                <asp:Label Text="" ID="lblErrorApellido" runat="server" />
             </div>
 
             <!-- Email -->
             <div class="mb-3 text-center">
                 <asp:Label ID="lblEmail" runat="server" Text="Email" CssClass="form-label gradient-label"></asp:Label>
                 <asp:TextBox ID="txtEmail" CssClass="form-control custom-input" runat="server" />
+                <asp:Label Text="" ID="lblErrorEmail" runat="server" />
             </div>
 
             <!-- Dirección -->
             <div class="mb-3 text-center">
                 <asp:Label ID="lblDireccion" runat="server" Text="Dirección" CssClass="form-label gradient-label"></asp:Label>
                 <asp:TextBox ID="txtDireccion" CssClass="form-control custom-input" runat="server" />
+                <asp:Label Text="" ID="lblErrorDireccion" runat="server" />
             </div>
 
             <!-- Ciudad -->
             <div class="mb-3 text-center">
                 <asp:Label ID="lblCiudad" runat="server" Text="Ciudad" CssClass="form-label gradient-label"></asp:Label>
                 <asp:TextBox ID="txtCiudad" CssClass="form-control custom-input" runat="server" />
+                <asp:Label Text="" ID="lblErrorCiudad" runat="server" />
             </div>
 
             <!-- CP -->
             <div class="mb-3 text-center">
                 <asp:Label ID="lblCp" runat="server" Text="CP" CssClass="form-label gradient-label"></asp:Label>
                 <asp:TextBox ID="txtCp" CssClass="form-control custom-input" runat="server" />
+                <asp:Label Text="" ID="lblErrorCp" runat="server" />
+            </div>
+
+            <!-- Terminos y Condiciones -->
+            <div class="mb-3 text-center">
+                <asp:CheckBox ID="cbxTerminosCondiciones" runat="server" />
+                <asp:Label ID="lblTerminosCondiciones" runat="server" Text="Acepta terminos y condiciones" CssClass="form-label gradient-label"></asp:Label>
+                <br>
+                <asp:Label Text="" ID="lblErrorTerminosCondiciones" runat="server" />
             </div>
 
             <!-- Botón de Envío -->
-            <asp:Button ID="btnDatos" runat="server"  Text="Enviar" CssClass="btn btn-primary w-100 gradient-button custom-button" />
+            <asp:Button ID="btnDatos" runat="server"  Text="Enviar" CssClass="btn btn-primary w-100 gradient-button custom-button" OnClick="btnDatos_Click"/>
         </div>
     </main>
 
