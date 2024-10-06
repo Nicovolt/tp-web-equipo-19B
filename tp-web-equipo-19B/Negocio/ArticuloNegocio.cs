@@ -18,7 +18,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT A.Id, Codigo, A.Nombre ,A.Descripcion AS ArticuloDescripcion, A.IdMarca ,M.Descripcion AS MarcaDescripcion, A.IdCategoria, C.Descripcion AS CategoriaDescripcion, Precio, I.ImagenUrl FROM ARTICULOS A, IMAGENES I, CATEGORIAS C, MARCAS M WHERE A.Id = I.IdArticulo AND A.IdMarca = M.Id AND A.IdCategoria = C.Id;");
+                datos.setearConsulta("SELECT A.Id, Codigo, A.Nombre, A.Descripcion AS ArticuloDescripcion, A.IdMarca, M.Descripcion AS MarcaDescripcion, A.IdCategoria, C.Descripcion AS CategoriaDescripcion, Precio FROM ARTICULOS A, CATEGORIAS C, MARCAS M WHERE A.IdMarca = M.Id AND A.IdCategoria = C.Id;");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -38,9 +38,11 @@ namespace Negocio
                     aux.Marca.IdMarca = (int)datos.Lector["IdMarca"];
                     aux.Marca.Descripcion = (string)datos.Lector["MarcaDescripcion"];
 
-                    aux.ImagenUrl = new Imagen();
-                    aux.ImagenUrl.Url = (string)datos.Lector["ImagenUrl"];
-                    aux.ImagenUrl.IdArticulo = (int)datos.Lector["Id"];
+                    List<Imagen> imagenes = new List<Imagen>();
+                    ImagenNegocio imagenNegocio = new ImagenNegocio();
+
+                    imagenes = imagenNegocio.listaImagenesPorArticulo(aux.ID);
+                    aux.ListaImagenes = imagenes;
 
                     lista.Add(aux);
                 }

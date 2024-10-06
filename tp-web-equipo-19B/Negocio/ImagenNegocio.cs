@@ -18,12 +18,13 @@ namespace Negocio
 
             try
             {
-                data.setearConsulta("SELECT i.IdArticulo, i.ImagenUrl FROM IMAGENES i;");
+                data.setearConsulta("SELECT i.Id, i.IdArticulo, i.ImagenUrl FROM IMAGENES i;");
                 data.ejecutarLectura();
 
                 while (data.Lector.Read())
                 {
                     Imagen aux = new Imagen();
+                    aux.Id = (int)data.Lector["i.Id"];
                     aux.IdArticulo = (int)data.Lector["i.IdArticulo"];
                     aux.Url = (string)data.Lector["i.ImagenUrl"];
 
@@ -67,9 +68,9 @@ namespace Negocio
             AccesoDatos data = new AccesoDatos();
             try
             {
-                data.setearConsulta("UPDATE IMAGENES SET ImagenUrl = @Url@ WHERE IdArticulo = @Id@");
+                data.setearConsulta("UPDATE IMAGENES SET ImagenUrl = @Url@ WHERE Id = @Id@");
                 data.setearParametro("@Url@", item.Url);
-                data.setearParametro("@Id@", item.IdArticulo);
+                data.setearParametro("@Id@", item.Id);
                 data.ejecutarAccion();
             }
             catch (Exception ex)
@@ -81,6 +82,37 @@ namespace Negocio
             {
                 data.cerrarConexion();
             }
+        }
+        
+        public List<Imagen> listaImagenesPorArticulo(int id)
+        {
+            List<Imagen> lista = new List<Imagen>();
+            AccesoDatos data = new AccesoDatos();
+
+            try
+            {
+                data.setearConsulta("SELECT Id, IdArticulo, ImagenUrl FROM IMAGENES i WHERE i.IdArticulo = @id@;");
+                data.setearParametro("@id@", id);
+                data.ejecutarLectura();
+
+                while (data.Lector.Read())
+                {
+                    Imagen aux = new Imagen();
+                    aux.Id = (int)data.Lector["Id"];
+                    aux.IdArticulo = (int)data.Lector["IdArticulo"];
+                    aux.Url = (string)data.Lector["ImagenUrl"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { data.cerrarConexion(); }
         }
     }
 }

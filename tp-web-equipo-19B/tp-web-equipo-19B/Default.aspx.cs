@@ -54,7 +54,7 @@ namespace tp_web_equipo_19B
 
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 lblErrorVoucher.Text = "Se ha producido un error inesperado. Por favor, inténtelo más tarde.";
                 lblErrorVoucher.ForeColor = System.Drawing.Color.Red;

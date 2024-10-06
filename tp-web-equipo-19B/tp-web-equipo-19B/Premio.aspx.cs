@@ -17,17 +17,16 @@ namespace tp_web_equipo_19B
             ArticuloNegocio articuloNegocio = new ArticuloNegocio();
             ListaArticulos = articuloNegocio.listar();
 
+
             if (Session["AccesoConcedido"] == null || !(bool)Session["AccesoConcedido"])
             {
                 Response.Write("<script>alert('Debe ingresar un código válido para ver los premios.');window.location='default.aspx';</script>");
-
             }
-
 
             if (!IsPostBack)
             {
                 repProductosSorteo.DataSource = ListaArticulos;
-                repProductosSorteo.DataBind();                
+                repProductosSorteo.DataBind();
             }
         }
 
