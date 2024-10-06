@@ -17,17 +17,17 @@ namespace tp_web_equipo_19B
             {
                 Response.Write("<script>alert('Debe ingresar un código válido o elegir un premio para acceder.');window.location='default.aspx';</script>");
             }
-            /*
+            if (!IsPostBack)
+            {
+                // Si el DNI ya fue ingresado, busca al cliente y carga los datos.
+                string dni = txtDNI.Text.Trim();
+                if (!string.IsNullOrEmpty(dni))
+                {
+                    CargarDatosCliente(dni);
+                }
+            }
 
-            AccesoDatos datos = new AccesoDatos();
 
-            datos.setearConsulta("UPDATE Vouchers SET IdCliente = @id, FechaCanje = CURDATE(), IdArticulo =@idArt WHERE id = @idVou;");
-            datos.setearParametro("@id@", ); //falta hacer
-            datos.setearParametro("@idArt", ); //falta hacer
-            datos.setearParametro("@idVou", Session["voucher"]);
-            datos.ejecutarAccion();
-
-            */
         }
 
         protected void btnDatos_Click(object sender, EventArgs e)
@@ -135,8 +135,8 @@ namespace tp_web_equipo_19B
                 }
 
                 voucherNegocio.registrarUsoVoucher(cliente.Id, valorPremio,voucher);
-
-                Response.Redirect("Default.aspx");
+                Response.Write("<script>alert('ya esta participando, sera devuelto al inicio');window.location='default.aspx';</script>");
+             
             }
             catch (Exception ex)
             {
@@ -158,5 +158,48 @@ namespace tp_web_equipo_19B
             if (item.Checked) { return true; }
             return false;
         }
+
+        private void CargarDatosCliente(string dni)
+        {
+            ClienteNegocio clienteNegocio = new ClienteNegocio();
+            Cliente cliente = clienteNegocio.getClienteByDNi(dni); // Supongo que tienes una función para obtener cliente por DNI.
+
+            if (cliente != null)
+            {
+                // Si el cliente existe, llena los campos con su información.
+                txtNombre.Text = cliente.Nombre;
+                txtApellido.Text = cliente.Apellido;
+                txtEmail.Text = cliente.Email;
+                txtDireccion.Text = cliente.Direccion;
+                txtCiudad.Text = cliente.Ciudad;
+                txtCp.Text = cliente.Cp.ToString();
+            }
+            else
+            {
+                // Si no existe, puedes mostrar un mensaje o limpiar los campos.
+                lblErrorDni.Text = "No se ha encontrado un cliente con este DNI.";
+                lblErrorDni.ForeColor = System.Drawing.Color.Red;
+                LimpiarCampos();  // Función opcional para limpiar campos si es necesario.
+            }
+        }
+
+        private void LimpiarCampos()
+        {
+            txtNombre.Text = string.Empty;
+            txtApellido.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            txtDireccion.Text = string.Empty;
+            txtCiudad.Text = string.Empty;
+            txtCp.Text = string.Empty;
+        }
+        protected void txtDNI_TextChanged(object sender, EventArgs e)
+        {
+            string dni = txtDNI.Text.Trim();
+            if (!string.IsNullOrEmpty(dni))
+            {
+                CargarDatosCliente(dni); // Llama a la función para cargar los datos del cliente.
+            }
+        }
+
     }
 }

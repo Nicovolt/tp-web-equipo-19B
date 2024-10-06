@@ -9,7 +9,7 @@
             <!-- DNI -->
             <div class="mb-3 text-center">
                 <asp:Label ID="lblDNI" runat="server" Text="DNI" CssClass="form-label gradient-label ms-10"></asp:Label>
-                <asp:TextBox ID="txtDNI" CssClass="form-control custom-input" runat="server" />
+                <asp:TextBox ID="txtDNI" CssClass="form-control custom-input" runat="server" AutoPostBack="true" OnTextChanged="txtDNI_TextChanged" />
                 <asp:Label Text="" ID="lblErrorDni" runat="server" />
             </div>
 

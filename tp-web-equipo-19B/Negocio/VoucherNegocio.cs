@@ -80,6 +80,7 @@ namespace Negocio
                 data.setearParametro("@fecha@", dateTime);
                 data.setearParametro("@codigo@", codigo);
                 data.ejecutarAccion();
+
             }
             catch (Exception ex)
             {
