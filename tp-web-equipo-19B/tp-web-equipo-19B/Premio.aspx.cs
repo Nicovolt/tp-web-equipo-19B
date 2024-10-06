@@ -34,9 +34,9 @@ namespace tp_web_equipo_19B
         {
             string valor = ((Button)sender).CommandArgument;
             Session["AccesoConcedidoDatos"] = true;
-           
-            Response.Redirect("Datos.aspx");
 
+            Session.Add("premio",valor);
+            Response.Redirect("Datos.aspx");
         }
     }
 }
