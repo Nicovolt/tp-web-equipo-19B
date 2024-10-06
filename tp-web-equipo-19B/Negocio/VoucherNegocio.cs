@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,6 +65,28 @@ namespace Negocio
                 }
             }
             else return voucher;
+        }
+
+        public void registrarUsoVoucher(int idCliente, int idArticulo, string codigo)
+        {
+            AccesoDatos data = new AccesoDatos();
+
+            try
+            {
+                DateTime dateTime = DateTime.Now;
+                data.setearConsulta("UPDATE Vouchers SET IdCliente=@idCliente@, FechaCanje=@fecha@, IdArticulo=@idArticulo@ WHERE CodigoVoucher=@codigo@;");
+                data.setearParametro("@idCliente@", idCliente);
+                data.setearParametro("@idArticulo@", idArticulo);
+                data.setearParametro("@fecha@", dateTime);
+                data.setearParametro("@codigo@", codigo);
+                data.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { data.cerrarConexion(); }
         }
     }
 }
