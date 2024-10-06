@@ -49,7 +49,7 @@
             </div>
 
             <!-- Botón de Envío -->
-            <asp:Button ID="Button1" runat="server" Text="Enviar" CssClass="btn btn-primary w-100 gradient-button custom-button" />
+            <asp:Button ID="btnDatos" runat="server"  Text="Enviar" CssClass="btn btn-primary w-100 gradient-button custom-button" />
         </div>
     </main>
 

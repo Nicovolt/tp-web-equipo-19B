@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,20 @@ namespace tp_web_equipo_19B
                 Response.Write("<script>alert('Debe ingresar un código válido o elegir un premio para acceder.');window.location='default.aspx';</script>");
             }
 
+
+            /*
+
+            AccesoDatos datos = new AccesoDatos();
+
+            datos.setearConsulta("UPDATE Vouchers SET IdCliente = @id, FechaCanje = CURDATE(), IdArticulo =@idArt WHERE id = @idVou;");
+            datos.setearParametro("@id@", ); //falta hacer
+            datos.setearParametro("@idArt", ); //falta hacer
+            datos.setearParametro("@idVou", Session["voucher"]);
+            datos.ejecutarAccion();
+
+            */
         }
+
+
     }
 }

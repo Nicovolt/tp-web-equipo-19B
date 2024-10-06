@@ -49,6 +49,7 @@ namespace tp_web_equipo_19B
                 if (voucher.IdCliente == null)
                 {
                     Session["AccesoConcedido"] = true;
+                    Session.Add("voucher", txtCodigo.Text);                   
                     Response.Redirect("premio.aspx");
                 }
 
