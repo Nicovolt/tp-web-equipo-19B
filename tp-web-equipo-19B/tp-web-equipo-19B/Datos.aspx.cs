@@ -136,7 +136,10 @@ namespace tp_web_equipo_19B
 
                 voucherNegocio.registrarUsoVoucher(cliente.Id, valorPremio,voucher);
                 Response.Write("<script>alert('ya esta participando, sera devuelto al inicio');window.location='default.aspx';</script>");
-             
+
+                confirmacion();
+                
+
             }
             catch (Exception ex)
             {
@@ -162,11 +165,11 @@ namespace tp_web_equipo_19B
         private void CargarDatosCliente(string dni)
         {
             ClienteNegocio clienteNegocio = new ClienteNegocio();
-            Cliente cliente = clienteNegocio.getClienteByDNi(dni); // Supongo que tienes una función para obtener cliente por DNI.
+            Cliente cliente = clienteNegocio.getClienteByDNi(dni); 
 
             if (cliente != null)
             {
-                // Si el cliente existe, llena los campos con su información.
+              
                 txtNombre.Text = cliente.Nombre;
                 txtApellido.Text = cliente.Apellido;
                 txtEmail.Text = cliente.Email;
@@ -176,10 +179,10 @@ namespace tp_web_equipo_19B
             }
             else
             {
-                // Si no existe, puedes mostrar un mensaje o limpiar los campos.
+                
                 lblErrorDni.Text = "No se ha encontrado un cliente con este DNI.";
                 lblErrorDni.ForeColor = System.Drawing.Color.Red;
-                LimpiarCampos();  // Función opcional para limpiar campos si es necesario.
+                LimpiarCampos(); 
             }
         }
 
@@ -197,9 +200,20 @@ namespace tp_web_equipo_19B
             string dni = txtDNI.Text.Trim();
             if (!string.IsNullOrEmpty(dni))
             {
-                CargarDatosCliente(dni); // Llama a la función para cargar los datos del cliente.
+                CargarDatosCliente(dni); 
             }
         }
 
+        private void confirmacion()
+        {
+            Negocio.ServicioEmail servicioEmail = new Negocio.ServicioEmail();
+
+            string nombre = txtNombre.Text;
+            string apellido = txtApellido.Text;
+            string documento = txtDNI.Text;
+            string mailUsuario = txtEmail.Text;
+
+            servicioEmail.ConfirmarParticipacion(mailUsuario, nombre, apellido, documento);
+        }
     }
 }
